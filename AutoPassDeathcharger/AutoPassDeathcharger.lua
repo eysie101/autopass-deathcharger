@@ -1,7 +1,9 @@
--- AutoPassDeathcharger 1.0.1 (WotLK 3.3.5): passes every loot roll on item 23193, Reins of the Naxxramas Deathcharger,
+-- AutoPassDeathcharger 1.0.2 (WotLK 3.3.5): passes every loot roll on item 23193, Reins of the Naxxramas Deathcharger,
 -- and hides its roll frame (ElvUI's roll bars and Blizzard's GroupLootFrame1-4). Nothing else, no settings.
--- RollOnLoot(rollID, 0) is the pass of the roll frame's own button.
+-- RollOnLoot(rollID, 0) is the pass of the roll frame's own button. The frames are hidden again every frame for
+-- HIDE_SECONDS: an addon that loads later (ElvUI) handles START_LOOT_ROLL after this one and shows its bar then.
 local ITEM_ID = 23193
+local HIDE_SECONDS = 1
 
 local function hideRollFrames(rollID)
   for i = 1, 4 do
@@ -15,6 +17,7 @@ local function hideRollFrames(rollID)
 end
 
 local f = CreateFrame("Frame")
+local pending = {}   -- rollID -> seconds left of hiding
 f:RegisterEvent("START_LOOT_ROLL")
 f:SetScript("OnEvent", function(_, _, rollID)
   local link = GetLootRollItemLink(rollID)
@@ -22,6 +25,17 @@ f:SetScript("OnEvent", function(_, _, rollID)
   if id == ITEM_ID then
     RollOnLoot(rollID, 0)
     hideRollFrames(rollID)
+    pending[rollID] = HIDE_SECONDS
+    f:SetScript("OnUpdate", f.onUpdate)
     DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99AutoPassDeathcharger|r: passed on " .. link)
   end
 end)
+f.onUpdate = function(self, elapsed)
+  local any = false
+  for rollID, left in pairs(pending) do
+    hideRollFrames(rollID)
+    left = left - elapsed
+    if left <= 0 then pending[rollID] = nil else pending[rollID] = left; any = true end
+  end
+  if not any then self:SetScript("OnUpdate", nil) end
+end
