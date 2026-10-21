@@ -1,5 +1,7 @@
 # AutoPassDeathcharger
 
+![AutoPassDeathcharger](icon.png)
+
 WoW 3.3.5a addon. It passes every loot roll on Reins of the Naxxramas Deathcharger (item 23193) and hides that
 roll's window. It does nothing else and has no settings.
 
