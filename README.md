@@ -4,8 +4,8 @@
 <img width="378" height="21" alt="image" src="https://github.com/user-attachments/assets/cc2dea35-1aa1-4284-96da-e6ed000324d0" />
 
 WoW 3.3.5a addon. It passes every loot roll on Reins of the Naxxramas Deathcharger (item 23193) and on Manual: Heavy
-Frostweave Bandage (item 39152, the bind-on-pickup First Aid book that teaches Heavy Frostweave Bandage) and hides
-that roll's window. It does nothing else and has no settings.
+Frostweave Bandage (item 39152) and hides
+that roll's window. 
 
 ## Changes
 
@@ -14,9 +14,5 @@ that roll's window. It does nothing else and has no settings.
 
 ## Install
 
-1. Copy the folder `AutoPassDeathcharger` into `<WoW folder>\Interface\AddOns`.
-2. Start WoW. A new addon is read at client start, not at `/reload`.
+Copy the folder `AutoPassDeathcharger` into `<WoW folder>\Interface\AddOns`.
 
-## Remove
-
-Delete the folder `AutoPassDeathcharger`.
