@@ -1,4 +1,4 @@
--- AutoPassDeathcharger 1.1.0 (WotLK 3.3.5): passes every loot roll on the items below and hides their roll frame
+-- AutoPassDeathcharger 1.1.1 (WotLK 3.3.5): passes every loot roll on the items below and hides their roll frame
 -- (ElvUI's roll bars and Blizzard's GroupLootFrame1-4). Nothing else, no settings.
 -- RollOnLoot(rollID, 0) is the pass of the roll frame's own button. The frames are hidden again every frame for
 -- HIDE_SECONDS: an addon that loads later (ElvUI) handles START_LOOT_ROLL after this one and shows its bar then.
@@ -30,7 +30,8 @@ f:SetScript("OnEvent", function(_, _, rollID)
     hideRollFrames(rollID)
     pending[rollID] = HIDE_SECONDS
     f:SetScript("OnUpdate", f.onUpdate)
-    DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99AutoPassDeathcharger|r: passed on " .. link)
+    -- (1.1.1) no chat line by default; remove the two dashes of the next line to get one
+    -- DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99AutoPassDeathcharger|r: passed on " .. link)
   end
 end)
 f.onUpdate = function(self, elapsed)
