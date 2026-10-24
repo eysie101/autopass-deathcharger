@@ -1,6 +1,7 @@
 ## Interface: 30300
 ## Title: AutoPassDeathcharger
-## Notes: Passes loot rolls on Reins of the Naxxramas Deathcharger (23193) and Manual: Heavy Frostweave Bandage (39152).
-## Version: 1.1.1
+## Notes: Passes loot rolls on the items of its list (/autopass).
+## Version: 1.2.0
+## SavedVariables: AutoPassDeathchargerDB
 
 AutoPassDeathcharger.lua
